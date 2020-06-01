@@ -4,9 +4,9 @@ const geocodecache = {};
 const getGeocode = async code => {
   const cache = geocodecache[code];
   if (cache) { return cache; };
-  let data = null;
   const fn = `./geocode/${code}.json`;
-  if (window.Deno) {
+  let data = null;
+  if (import.meta && import.meta.url && import.meat.url.startsWith("file://") && window.Deno) {
     data = JSON.parse(await Deno.readTextFile(fn));
   } else {
     data = await (await fetch(fn)).json();

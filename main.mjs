@@ -1,5 +1,5 @@
-import { getLGCode } from "./lgcode.mjs";
-import { getLatLng } from "./geocode.mjs";
+import { getLGCode } from "https://code4sabae.github.io/japan/lgcode.mjs";
+import { getLatLng } from "https://code4sabae.github.io/japan/geocode.mjs";
 
 console.log(getLGCode("東京都", "新宿区"));
 console.log(getLGCode("福井県", "鯖江市"));

@@ -4,8 +4,8 @@ const getLGCode = (prefname, cityname) => {
   const res = lgcodemap[cityname];
   if (!res) {
     // "ヶ"と "ケ" の表記ゆれ対応
-    if (cityname.indexOf("ヶ") >= 0) { return getCityCode(prefname, cityname.replace("ヶ", "ケ")); }
-    if (cityname.indexOf("ケ") >= 0) { return getCityCode(prefname, cityname.replace("ケ", "ヶ")); }
+    if (cityname.indexOf("ヶ") >= 0) { return getLGCode(prefname, cityname.replace("ヶ", "ケ")); }
+    if (cityname.indexOf("ケ") >= 0) { return getLGCode(prefname, cityname.replace("ケ", "ヶ")); }
     return null;
   }
   const pres = lgcodemap[prefname];
@@ -17,7 +17,7 @@ const getLGCode = (prefname, cityname) => {
 
   return null;
 };
-// console.log(getCityCode("東京都", "霞が関"));
+// console.log(getLGCode("東京都", "霞が関"));
 
 const findCity = name => {
   const res = [];

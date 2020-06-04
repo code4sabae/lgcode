@@ -34,16 +34,16 @@ const makeReverseMap = map => {
   const list = Object.entries(map);
   for (let i = 1; i <= 47; i++) {
     const code = i * 1000;
-    res[code] = list.find(a => a[1] === code)[0];
+    res[code] = [list.find(a => a[1] === code)[0]];
   }
   for (const [city, code] of list) {
     if (code % 1000 === 0) { continue }
     if (Array.isArray(code)) {
       for (const c of code) {
-        res[c] = res[Math.floor(c / 1000) * 1000] + city;
+        res[c] = [res[Math.floor(c / 1000) * 1000][0], city];
       }
     } else {
-      res[code] = res[Math.floor(code / 1000) * 1000] + city;
+      res[code] = [res[Math.floor(code / 1000) * 1000][0], city];
     }
   }
   return res;

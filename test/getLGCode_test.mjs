@@ -22,6 +22,12 @@ Deno.test("住所から公共団体コード（存在しない）", async () => 
     null,
   );
 });
+Deno.test("住所から公共団体コード（県名間違い）", async () => {
+  assertEquals(
+    getLGCode("福丼県", "鯖江市"),
+    null
+  );
+});
 Deno.test("住所から公共団体コード（一意に定まらない）", async () => {
   assertEquals(
     getLGCode("神奈川県", "南区"),

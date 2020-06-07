@@ -36,7 +36,7 @@ const getLGCodeFrom2 = (cityname1, cityname2) => {
   const l = queryMap(cityname2);
   if (!l) return null;
   const l2 = queryMap(cityname1);
-  if (l2.length !== 1) return null;
+  if (!l2 || l2.length !== 1) return null;
   const pcode = parseInt(l2[0][0]);
   const l3 = l.filter((a) => {
     if (a[1] == pcode) return true;

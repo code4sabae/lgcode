@@ -53,6 +53,21 @@ const getLGCode = (cityname1, cityname2 = null, cityname3 = null) => {
     return makeCodeResult(queryMap(cityname1));
   }
   if (!cityname3) { // 2 params
+    if (cityname2.endsWith("区")) { // 都道府県の代わりに市を使う
+      const n = cityname2.indexOf("市");
+      if (n >= 0) {
+        const city = cityname2.substring(0, n + 1);
+        const ku = cityname2.substring(n + 1);
+        return getLGCodeFrom2(city, ku);
+      }
+    }
+    if (cityname2.endsWith("町") || cityname2.endsWith("村")) { // 郡は無視
+      const n = cityname2.indexOf("郡");
+      if (n > 0) {
+        const town = cityname2.substring(n + 1);
+        return getLGCodeFrom2(cityname1, town);
+      }
+    }
     return getLGCodeFrom2(cityname1, cityname2);
   }
   // 3params (ignore cityname1)

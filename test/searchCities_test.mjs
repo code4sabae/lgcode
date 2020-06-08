@@ -37,3 +37,9 @@ Deno.test("都市名検索（部分一致）", async () => {
     ],
   );
 });
+Deno.test("都市名検索（那珂川町）", async () => {
+  assertEquals(
+    searchCities("那珂川町"),
+    [ [ "9411", "那珂川町" ] ]
+  );
+});

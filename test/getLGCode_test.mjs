@@ -58,3 +58,27 @@ Deno.test("住所から公共団体コード（根室振興局泊村）", async 
     1696,
   );
 });
+Deno.test("住所から公共団体コード（福岡県筑紫郡那珂川町）", async () => {
+  assertEquals(
+    getLGCode("那珂川町"),
+    9411, // 福岡県のではない
+  );
+});
+Deno.test("住所から公共団体コード（福岡県那珂川市）", async () => {
+  assertEquals(
+    getLGCode("那珂川市"),
+    40231,
+  );
+});
+Deno.test("住所から公共団体コード（福岡県筑紫郡那珂川町）", async () => {
+  assertEquals(
+    getLGCode("福岡県", "那珂川市"),
+    40231,
+  );
+});
+Deno.test("住所から公共団体コード（福岡県筑紫郡那珂川町、旧名称はヒットしない）", async () => {
+  assertEquals(
+    getLGCode("福岡県", "筑紫郡那珂川町"),
+    [] // 40231
+  );
+});
